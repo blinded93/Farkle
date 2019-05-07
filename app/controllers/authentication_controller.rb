@@ -1,7 +1,7 @@
 class AuthenticationController < ApplicationController
   def authenticate_user
-    identifier = params[:email] || params[:username]
-    user = User.find_by_identifier(identifier)
+    user = User.find_by_identifier(params[:identifier])
+
     if user.authenticate(params[:password])
       render json: payload(user)
     else
