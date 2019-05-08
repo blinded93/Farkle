@@ -1,0 +1,50 @@
+import { authRequest, authSuccess, authFailure } from './auth'
+
+export const createUser = credentials => {
+  const newUser = credentials
+
+  return dispatch => {
+    return fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(resp => resp.json())
+      .then(user => {
+        Object.keys(user.errors).length === 0
+          ? dispatch(authenticate({
+            identifier: newUser.email,
+            password: newUser.password
+          }))
+          : dispatch(authFailure(user.errors))
+      })
+  }
+}
+
+export const authenticate = credentials => {
+  return dispatch => {
+    dispatch(authRequest())
+
+    return fetch('/auth_user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(resp => resp.json())
+      .then(response => {
+        if (response.auth_token) {
+          localStorage.setItem('token', response.auth_token)
+          localStorage.setItem('user', JSON.stringify(response.user))
+          dispatch(authSuccess(response.user))
+        } else {
+          dispatch(authFailure(response.errors))
+          localStorage.clear()
+        }
+      })
+  }
+}
