@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :accounts
   resources :scorecards
   resources :games
-  post '/login' => 'authentication#authenticate_user'
-  get '/profile/:id' => 'user#profile'
+  post '/auth_user' => 'authentication#authenticate_user'
+  resources :users
+  get '/profile/:id' => 'users#profile'
 end
