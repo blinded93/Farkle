@@ -9,7 +9,6 @@ class UsersController < ApplicationController
       user.save
       render json: user, status: 200
     else
-      binding.pry
       render json: user, status: 400
     end
   end

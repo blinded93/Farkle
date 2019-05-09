@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_022942) do
+ActiveRecord::Schema.define(version: 2019_05_09_011000) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
