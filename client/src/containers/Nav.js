@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import { Navbar } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import SessionModal from './SessionModal'
-import { authSuccess, logout } from '../actions/auth'
+import { modalShow } from '../actions/modal'
+import { authSuccess } from '../actions/auth'
 import SignedOutNav from '../components/SignedOutNav'
 import SignedInNav from '../components/SignedInNav'
+import MainModal from './modal/Modal'
 
 class Navigation extends Component {
-  state = {
-    modalShow: false,
-    form: ''
-  }
-  
   componentDidMount() {
     const { authSuccess } = this.props
     const user = localStorage.user
@@ -19,21 +15,16 @@ class Navigation extends Component {
     !!user && authSuccess(JSON.parse(user))
   }
 
-  modalOpen = form => this.setState({ form: form, modalShow: true })
-
-  modalClose = () => this.setState({ modalShow: false })
-
   menuItems = currentUser => {
-    const { logout } = this.props
+    const { modalShow, logout } = this.props
 
     return Object.keys(currentUser).length === 0
-            ? ( <SignedOutNav modalOpen={this.modalOpen}/> )
-            : ( <SignedInNav logout={logout} /> )
+            ? ( <SignedOutNav modalOpen={modalShow}/> )
+            : ( <SignedInNav modalOpen={modalShow} logout={logout} /> )
   }
 
   render () {
-    const { modalShow, form } = this.state
-    const { currentUser, errors } = this.props.auth
+    const { currentUser, errors } = this.props
 
     return (
       <>
@@ -46,16 +37,16 @@ class Navigation extends Component {
             { this.menuItems(currentUser) }
           </Navbar.Collapse>
         </Navbar>
-        <SessionModal
-          show={modalShow}
-          onHide={this.modalClose}
-          errors={errors}
-          form={form} />
+        <MainModal errors={errors} />
       </>
     )
   }
 }
 
-const mapStateToProps = state => ({ auth: state.auth })
+const mapStateToProps = state => {
+  const { currentUser, errors } = state.auth
 
-export default connect(mapStateToProps, { authSuccess, logout })(Navigation)
+  return { currentUser, errors }
+}
+
+export default connect(mapStateToProps, { modalShow, authSuccess })(Navigation)
