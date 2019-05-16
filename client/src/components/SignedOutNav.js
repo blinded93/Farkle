@@ -1,9 +1,7 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 
-const SignedOutNav = props => {
-  const { modalOpen } = props
-
+const SignedOutNav = ({ modalOpen }) => {
   return (
     <>
       <Nav className='ml-auto'>

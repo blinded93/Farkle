@@ -2,9 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
 
-const SignedInNav = props => {
-  const { logout } = props
-
+const SignedInNav = ({ modalOpen, logout }) => {
   return (
     <>
       <Nav className='ml-auto'>
@@ -24,7 +22,7 @@ const SignedInNav = props => {
             Games
         </Link>
         <Nav.Link
-          onClick={logout}>
+          onClick={e => modalOpen('Logout')}>
             Logout
         </Nav.Link>
       </Nav>
