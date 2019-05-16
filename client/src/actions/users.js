@@ -1,6 +1,6 @@
 import { authRequest, authSuccess, authFailure } from './auth'
 
-export const createUser = credentials => {
+export const createUser = (credentials, closeModal) => {
   const newUser = credentials
 
   return dispatch => {
@@ -18,13 +18,13 @@ export const createUser = credentials => {
           ? dispatch(authenticate({
             identifier: newUser.email,
             password: newUser.password
-          }))
+          }, closeModal))
           : dispatch(authFailure(user.errors))
       })
   }
 }
 
-export const authenticate = credentials => {
+export const authenticate = (credentials, closeModal) => {
   return dispatch => {
     dispatch(authRequest())
 
@@ -41,6 +41,7 @@ export const authenticate = credentials => {
           localStorage.setItem('token', response.auth_token)
           localStorage.setItem('user', JSON.stringify(response.user))
           dispatch(authSuccess(response.user))
+          !!closeModal && closeModal()
         } else {
           dispatch(authFailure(response.errors))
           localStorage.clear()
