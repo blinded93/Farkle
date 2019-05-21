@@ -35,3 +35,7 @@
 .icon-150 {
   font-size: 150%;
 }
+
+.pointer {
+  cursor: pointer !important;
+}
