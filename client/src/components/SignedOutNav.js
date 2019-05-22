@@ -1,20 +1,21 @@
 import React from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
+import { IndexLinkContainer } from 'react-router-bootstrap'
 
 const SignedOutNav = ({ modalOpen }) => {
   return (
     <>
-      <Nav className='ml-auto'>
-        <Nav.Link
-          onClick={e => modalOpen('Login')}>
+      <IndexLinkContainer to='/'>
+        <Nav.Link onClick={e => modalOpen('Login')}>
             Login
         </Nav.Link>
-        <Navbar.Text>/</Navbar.Text>
-        <Nav.Link
-          onClick={e => modalOpen('Signup')}>
+      </IndexLinkContainer>
+      {/* <Navbar.Text>/</Navbar.Text> */}
+      <IndexLinkContainer to='/'>
+        <Nav.Link onClick={e => modalOpen('Signup')}>
             Signup
         </Nav.Link>
-      </Nav>
+      </IndexLinkContainer>
     </>
   )
 }

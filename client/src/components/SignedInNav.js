@@ -1,31 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
 
 const SignedInNav = ({ modalOpen, logout }) => {
   return (
     <>
-      <Nav className='ml-auto'>
-        <Link
-          to='/profile'
-          className='nav-link'>
-            Home
-        </Link>
-        <Link
-          to='/friends'
-          className='nav-link'>
-            Friends
-        </Link>
-        <Link
-          to='/games'
-          className='nav-link'>
-            Games
-        </Link>
-        <Nav.Link
-          onClick={e => modalOpen('Logout')}>
+      <LinkContainer to='profile'>
+        <Nav.Link>Home</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to='friends'>
+        <Nav.Link>Friends</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to='games'>
+        <Nav.Link>Games</Nav.Link>
+      </LinkContainer>
+      <IndexLinkContainer to='/'>
+        <Nav.Link onClick={e => modalOpen('Logout')}>
             Logout
         </Nav.Link>
-      </Nav>
+      </IndexLinkContainer>
     </>
   )
 }
