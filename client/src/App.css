@@ -39,3 +39,17 @@
 .pointer {
   cursor: pointer !important;
 }
+
+.container {
+  margin-top: 75px;
+}
+
+@media screen and (max-width: 576px) {
+  .sm-game-left {
+    margin-left: 10px;
+  }
+  
+  .sm-game-right {
+    margin-right: 10px;
+  }
+}
