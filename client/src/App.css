@@ -53,3 +53,7 @@
     margin-right: 10px;
   }
 }
+
+.card-header {
+  padding: 0.25rem 1rem !important;
+}
