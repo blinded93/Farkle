@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_09_011000) do
+ActiveRecord::Schema.define(version: 2019_05_23_034939) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
@@ -28,12 +28,13 @@ ActiveRecord::Schema.define(version: 2019_05_09_011000) do
   end
 
   create_table "scorecards", force: :cascade do |t|
-    t.integer "score"
+    t.integer "score", default: 0
     t.text "scores_per_turn"
     t.integer "user_id"
     t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["game_id"], name: "index_scorecards_on_game_id"
     t.index ["user_id"], name: "index_scorecards_on_user_id"
   end
