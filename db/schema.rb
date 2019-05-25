@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_23_034939) do
+ActiveRecord::Schema.define(version: 2019_05_25_031228) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2019_05_23_034939) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "in_progress", default: true
+    t.string "winner"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
@@ -35,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_05_23_034939) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "color", default: "black"
     t.index ["game_id"], name: "index_scorecards_on_game_id"
     t.index ["user_id"], name: "index_scorecards_on_user_id"
   end
