@@ -27,7 +27,7 @@ class Navigation extends Component {
           bg='dark'
           variant='dark'>
             <Nav className='mr-auto'>
-              <Brand />
+              <Brand modalOpen={modalShow} />
             </Nav>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
