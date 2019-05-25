@@ -3,6 +3,8 @@ import { Navbar, Nav, Badge } from 'react-bootstrap'
 import { IndexLinkContainer } from 'react-router-bootstrap'
 
 const Brand = props => {
+  const { modalOpen } = props
+
   return (
     <>
       <Navbar.Brand>
@@ -11,8 +13,8 @@ const Brand = props => {
         </IndexLinkContainer>
         <small>
           <Badge
-            className='pointer'
-            onClick={e => alert('GREAT!')}
+            className='ml-2 pointer'
+            onClick={e => modalOpen('NewGame')}
             variant='secondary'>
               New
           </Badge>
