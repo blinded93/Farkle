@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
 
 const Login = props => {
-  const { onChange, onSubmit, fields } = props
-  const { errors } = props
+  const { onChange, onSubmit, fields, errors } = props
   const [ passwordType, setPasswordType ] = useState('password')
   const togglePasswordType = () => {
     passwordType === 'password'

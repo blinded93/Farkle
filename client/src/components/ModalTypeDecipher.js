@@ -6,7 +6,7 @@ const ModalTypeDecipher = props => {
   const components = {
     'Login': SessionBody,
     'Signup': SessionBody,
-    'New': DialogBody,
+    'NewGame': DialogBody,
     'Logout': DialogBody
   }
   const SelectedComponent = components[props.modalType]

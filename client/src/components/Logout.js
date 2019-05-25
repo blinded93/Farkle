@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 const Logout = props => {
   const { logout, modalClose } = props
+
   const logoutAndClose = () => {
     logout()
     modalClose()
