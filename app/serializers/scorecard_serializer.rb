@@ -1,3 +1,3 @@
 class ScorecardSerializer < ApplicationSerializer
-  attributes :id
+  attributes :name, :color, :score, :scores_per_turn
 end
