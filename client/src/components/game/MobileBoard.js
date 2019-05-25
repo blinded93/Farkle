@@ -1,5 +1,6 @@
 import React from 'react'
-import { Row, Col, Accordion, Card, Table } from 'react-bootstrap'
+import { Row, Col, Accordion, Card, Table, Navbar, Tabs, Tab } from 'react-bootstrap'
+import Buttons from './Buttons'
 
 const MobileBoard = props => {
   const { height } = props
@@ -31,39 +32,34 @@ const MobileBoard = props => {
       <Row className='mt-3'>
         <Col>
         <h4 className='text-danger'>Turn Score: 0</h4>
-          <Accordion defaultActiveKey="0">
-            <Card style={{ height: `500`}}>
-              <Accordion.Toggle as={Card.Header} eventKey="0">
-                Kyle
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <Table  size='sm'>
-                    <tbody>
-                      <tr>
-                        <td>550</td><td></td>
-                      </tr>
-                      <tr>
-                        <td>700</td><td></td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Accordion.Toggle as={Card.Header} eventKey="1">
-                Montie
-              </Accordion.Toggle>
-              <Accordion.Collapse eventKey="1">
-                <Card.Body>
-
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
+          <Tabs defaultActiveKey="player1" id="uncontrolled-tab-example">
+            <Tab eventKey="player1" title="Player 1">
+              <Table borderless size='sm' className='mt-2'>
+                <tbody>
+                  <tr>
+                    <td>550</td>
+                  </tr>
+                  <tr>
+                    <td>700</td>
+                  </tr>
+                  <tr>
+                    <td></td><td></td><td className='text-right'>Total:1250</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </Tab>
+            <Tab className='text-success' eventKey="player2" title="Player 2">
+              
+            </Tab>
+          </Tabs>
         </Col>
       </Row>
+      <Navbar fixed='bottom'
+        expand='sm'
+        bg='dark'
+        variant='dark'>
+        <Buttons />
+      </Navbar>
     </>
   )
 }
