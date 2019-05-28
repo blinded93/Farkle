@@ -1,14 +1,15 @@
 class GamesController < ApplicationController
-  def create
-    game = Game.new(game_params)
-    # binding.pry
+  before_action :authenticate_request!
 
+  def create
+    game = Game.create_with_scorecards(current_user, player_params)
+    
     render json: game, status: 200
   end
 
   private
-  
-    def game_params
-      params.permit(:user_id)
+    def player_params
+      keys = params.keys.select{|key| key.include?('player')}
+      keys.map{|key| params.require(key.to_sym).permit(:name, :color)}
     end
 end
