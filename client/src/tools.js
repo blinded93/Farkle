@@ -9,3 +9,7 @@ export const noneBlankStringValues = (modalType, obj) => {
 
   return { [modalType.toLowerCase()]: nonBlankValues }
 }
+
+export const isEmpty = (obj) => (
+  obj && Object.keys(obj).length === 0
+)
