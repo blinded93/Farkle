@@ -1,4 +1,10 @@
 class AuthenticationController < ApplicationController
+  before_action :authenticate_request!, only: [:verify_user]
+
+  def verify_user
+    render json: payload(current_user)
+  end
+  
   def authenticate_user
     user = User.find_by_identifier(params[:identifier])
 

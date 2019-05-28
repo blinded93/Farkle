@@ -3,16 +3,17 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { modalShow } from '../actions/modal'
 import { authSuccess } from '../actions/auth'
+import { verifyUser } from '../actions/users'
 import MenuItems from '../components/MenuItems'
 import MainModal from './modal/Modal'
 import Brand from '../components/Brand'
 
 class Navigation extends Component {
   componentDidMount() {
-    const { authSuccess } = this.props
+    const { verifyUser } = this.props
     const user = localStorage.user
 
-    !!user && authSuccess(JSON.parse(user))
+    !!user && verifyUser(localStorage.token)
   }
 
   render () {
@@ -44,6 +45,9 @@ class Navigation extends Component {
   }
 }
 
-const mapStateToProps = state => state.auth
-
-export default connect(mapStateToProps, { modalShow, authSuccess })(Navigation)
+// const mapStateToProps = state => state.auth
+const mapStateToProps = state => {
+  console.log(state)
+return state.auth
+}
+export default connect(mapStateToProps, { modalShow, authSuccess, verifyUser })(Navigation)
