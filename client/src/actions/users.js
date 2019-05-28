@@ -49,3 +49,26 @@ export const authenticate = (credentials, closeModal) => {
       })
   }
 }
+
+export const verifyUser = token => {
+  return dispatch => {
+    dispatch(authRequest())
+
+    return fetch('/verify_user', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': token
+      }
+    })
+      .then(resp => resp.json())
+      .then(response => {
+        if (response.errors) {
+          localStorage.clear()
+        } else {
+          dispatch(authSuccess(response.user))
+        }
+      })
+  }
+}
