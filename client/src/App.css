@@ -57,3 +57,7 @@
 .card-header {
   padding: 0.25rem 1rem !important;
 }
+
+table .scores {
+  height: 33.6px;
+}
