@@ -61,3 +61,79 @@
 table .scores {
   height: 33.6px;
 }
+
+.dice {
+  font-size: 600%;
+  -webkit-animation-name: dice-off;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: dice-on;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.dice:hover {
+  animation-name: dice-hover;
+  animation-duration: 0.25s;
+}
+
+@keyframes dice-hover {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(10deg);
+  }
+
+}
+
+@-webkit-keyframes dice-off {
+  0%   {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0.5);
+  }
+}
+
+@keyframes dice-off {
+  0%   {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0.5);
+  }
+}
+
+@-webkit-keyframes dice-on {
+  0%   {filter: opacity(0.5);}
+  100% {filter: opacity(1);}
+}
+
+@keyframes dice-on {
+  0%   {filter: opacity(0.5);}
+  100% {filter: opacity(1);}
+}
+
+
+
+
+
+
+/* hover.css */
+
+.hvr-grow-rotate {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-grow-rotate:hover, .hvr-grow-rotate:focus, .hvr-grow-rotate:active {
+  -webkit-transform: scale(1.1) rotate(4deg);
+  transform: scale(1.1) rotate(4deg);
+}
