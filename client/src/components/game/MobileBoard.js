@@ -1,32 +1,30 @@
 import React from 'react'
-import { Row, Col, Accordion, Card, Table, Navbar, Tabs, Tab } from 'react-bootstrap'
+import { Row, Col, Navbar } from 'react-bootstrap'
 import Buttons from './Buttons'
+import Scorecard from './Scorecard'
+import { connect } from 'react-redux'
+import Dice from './Dice'
 
 const MobileBoard = props => {
-  const { height } = props
+  const { currentGame, scorecards, dice } = props
+  const showDice = (start, end) => (
+    Object.values(dice).slice(start, end).map((num, key) => (
+      <Col key={key + start}>
+        <Dice num={num} id={`dice-${key + 1 + start}`} />
+      </Col>
+    ))
+  )
 
   return (
     <>
       <Row>
         <Col></Col>
-        {
-          ['one', 'two', 'three'].map((num, key) => (
-            <Col key={key}>
-              <i style={{ 'fontSize': '500%' }} className={`fas fa-dice-${num}`} />
-            </Col>
-          ))
-        }
+        { showDice(0, 3) }
         <Col></Col>
       </Row>
       <Row className='mt-3'>
         <Col></Col>
-        {
-          ['four', 'five', 'six'].map((num, key) => (
-            <Col key={key + 3}>
-              <i style={{ 'fontSize': '500%' }} className={`fas fa-dice-${num}`} />
-            </Col>
-          ))
-        }
+        { showDice(3) }
         <Col></Col>
       </Row>
       <Row className='mt-3'>
@@ -64,4 +62,6 @@ const MobileBoard = props => {
   )
 }
 
-export default MobileBoard
+const mapStateToProps = state => ({ dice: state.turn.dice })
+
+export default connect(mapStateToProps)(MobileBoard)

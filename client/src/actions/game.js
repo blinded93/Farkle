@@ -27,7 +27,6 @@ export const createGame = (players, token) => {
 }
 
 const newGame = gameData => {
-
   return {
     type: 'NEW_GAME',
     gameData
