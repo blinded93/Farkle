@@ -29,27 +29,9 @@ const MobileBoard = props => {
       </Row>
       <Row className='mt-3'>
         <Col>
-        <h4 className='text-danger'>Turn Score: 0</h4>
-          <Tabs defaultActiveKey="player1" id="uncontrolled-tab-example">
-            <Tab eventKey="player1" title="Player 1">
-              <Table borderless size='sm' className='mt-2'>
-                <tbody>
-                  <tr>
-                    <td>550</td>
-                  </tr>
-                  <tr>
-                    <td>700</td>
-                  </tr>
-                  <tr>
-                    <td></td><td></td><td className='text-right'>Total:1250</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Tab>
-            <Tab className='text-success' eventKey="player2" title="Player 2">
-              
-            </Tab>
-          </Tabs>
+          <h4 className='text-danger'>Turn Score: 0</h4>
+          <Scorecard
+            scorecards={scorecards} />
         </Col>
       </Row>
       <Navbar fixed='bottom'
