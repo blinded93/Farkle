@@ -45,9 +45,6 @@ class Navigation extends Component {
   }
 }
 
-// const mapStateToProps = state => state.auth
-const mapStateToProps = state => {
-  console.log(state)
-return state.auth
-}
+const mapStateToProps = state => state.auth
+
 export default connect(mapStateToProps, { modalShow, authSuccess, verifyUser })(Navigation)
