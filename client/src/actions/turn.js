@@ -1,4 +1,4 @@
-import { rollTheDice } from '../logic/game'
+import { rollTheDice, checkForScore } from '../logic/game'
 
 export const farkle = () =>  {
   return dispatch => {
@@ -17,19 +17,33 @@ export const updateTotal = () => ({ type: 'UPDATE_TOTAL' })
 
 export const saveDice = () => ({ type: 'SAVE_DICE' })
 
-export const rollDice = (dice, selectedDiceIndexes) => {
+export const rollDice = (dice, selectedAndSavedDice) => {
   return dispatch => {
+    dispatch(incrementRollCount())
+
+    new Promise((resolve, reject) => {
     let newDice
     const rollDiceInterval = setInterval(() => {
-      newDice = rollTheDice(dice, selectedDiceIndexes)
-      dispatch({ type: 'ROLL_DICE', newDice })
+        newDice = rollTheDice(dice, selectedAndSavedDice)
+
+        dispatch({ type: 'SAVE_DICE', newDice })
     }, 50)
 
     setTimeout(() => {
       clearInterval(rollDiceInterval)
+        const remainingDice = newDice.filter((_, i) => !selectedAndSavedDice.includes(i))
+
+        checkForScore(remainingDice)
+          ? resolve(newDice)
+          : reject(newDice)
     }, 1000)
+    })
+      .then(newDice => dispatch({ type: 'UPDATE_FINAL_DICE' }))
+      .catch(newDice => dispatch(farkle()))
   }
 }
+
+const incrementRollCount = () => ({ type:'INCREMENT_ROLL_COUNT' })
 
 export const bankScore = () => ({
 
