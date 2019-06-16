@@ -3,17 +3,19 @@ import { Row, Col } from 'react-bootstrap'
 import Buttons from './Buttons'
 import Scorecard from './Scorecard'
 import Dice from './Dice'
+import Score from './Score'
+
 import { connect } from 'react-redux'
 
 const DesktopBoard = props => {
-  const { currentGame, scorecards, dice } = props
-  const showDice = () => (
-    dice.map((num, key) => (
+  const { currentGame, dice, diceState } = props
+  const showDice = () => {
+    return (dice.map((num, key) => (
       <Row key={key}>
-        <Dice num={num} id={`dice-${key + 1}`} />
+        <Dice diceState={diceState[key]} num={num} id={`dice-${key}`} />
       </Row>
-    ))
-  )
+    )))
+  }
 
   return (
     <>
@@ -35,6 +37,9 @@ const DesktopBoard = props => {
   )
 }
 
-const mapStateToProps = state => ({ dice: state.turn.dice })
+const mapStateToProps = state => ({
+  dice: state.turn.dice,
+  diceState: state.turn.diceState
+})
 
 export default connect(mapStateToProps)(DesktopBoard)

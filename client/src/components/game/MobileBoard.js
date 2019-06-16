@@ -4,13 +4,14 @@ import Buttons from './Buttons'
 import Scorecard from './Scorecard'
 import { connect } from 'react-redux'
 import Dice from './Dice'
+import Score from './Score'
 
 const MobileBoard = props => {
-  const { currentGame, scorecards, dice } = props
+  const { currentGame, dice, diceState } = props
   const showDice = (start, end) => (
     Object.values(dice).slice(start, end).map((num, key) => (
       <Col key={key + start}>
-        <Dice num={num} id={`dice-${key + 1 + start}`} />
+        <Dice diceState={diceState[key]} num={num} id={`dice-${key + start}`} />
       </Col>
     ))
   )
@@ -43,6 +44,9 @@ const MobileBoard = props => {
   )
 }
 
-const mapStateToProps = state => ({ dice: state.turn.dice })
+const mapStateToProps = state => ({
+  dice: state.turn.dice,
+  diceState: state.turn.diceState
+})
 
 export default connect(mapStateToProps)(MobileBoard)
