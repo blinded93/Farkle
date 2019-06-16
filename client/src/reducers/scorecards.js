@@ -1,13 +1,13 @@
 const initialState = {
   player1: {
-    name:'Player1',
-    color:'dark',
+    name: 'Player1',
+    color: 'dark',
     score: 0,
     scoresPerTurn: []
   },
   player2: {
-    name:'Player2',
-    color:'dark',
+    name: 'Player2',
+    color: 'dark',
     score: 0,
     scoresPerTurn: []
   }
@@ -26,6 +26,7 @@ export default (state = initialState, action) => {
           ...state.player2, ...player2
         }
       }
+
     default:
       return state
   }
