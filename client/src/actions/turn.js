@@ -6,11 +6,9 @@ export const selectDice = diceNum => {
   return { type: 'SELECT_DICE', diceIndex }
 }
 
-export const deselectDice = diceNum => {
-  const diceIndex = diceNum - 1
+export const selectDice = diceIndex => ({ type: 'SELECT_DICE', diceIndex })
 
-  return { type: 'DESELECT_DICE', diceIndex }
-}
+export const deselectDice = diceIndex => ({ type: 'DESELECT_DICE', diceIndex })
 
 export const saveDice = () => ({ type: 'SAVE_DICE' })
 
