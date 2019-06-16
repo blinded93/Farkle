@@ -10,7 +10,6 @@ const SignedOutNav = ({ modalOpen }) => {
             Login
         </Nav.Link>
       </IndexLinkContainer>
-      {/* <Navbar.Text>/</Navbar.Text> */}
       <IndexLinkContainer to='/'>
         <Nav.Link onClick={e => modalOpen('Signup')}>
             Signup

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { rollDice, bankScore } from '../../actions/turn'
+import { rollDice, bankScore, updateTotal } from '../../actions/turn'
+import RollBtn from './RollBtn'
 
 const Buttons = props => {
   const { rollDice, bankScore, dice, selectedDiceIndexes } = props
@@ -10,6 +11,7 @@ const Buttons = props => {
 
   return (
     <>
+      <RollBtn updateTotal={updateTotal} />
       <Button
         onClick={e => handleRoll(dice, selectedDiceIndexes)}
         style={{ width: '47%' }}
