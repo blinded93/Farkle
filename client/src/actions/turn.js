@@ -1,9 +1,10 @@
 import { rollTheDice } from '../logic/game'
 
-export const selectDice = diceNum => {
-  const diceIndex = diceNum - 1
-
-  return { type: 'SELECT_DICE', diceIndex }
+export const farkle = () =>  {
+  return dispatch => {
+    dispatch({ type: 'CHANGE_CURRENT_PLAYER' })
+    dispatch({ type: 'FARKLE' })
+}
 }
 
 export const selectDice = diceIndex => ({ type: 'SELECT_DICE', diceIndex })
