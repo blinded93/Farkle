@@ -29,9 +29,8 @@ const MobileBoard = props => {
       </Row>
       <Row className='mt-3'>
         <Col>
-          <h4 className='text-danger'>Turn Score: 0</h4>
-          <Scorecard
-            scorecards={scorecards} />
+          <Score />
+          <Scorecard />
         </Col>
       </Row>
       <Navbar fixed='bottom'
