@@ -10,6 +10,10 @@ export const selectDice = diceIndex => ({ type: 'SELECT_DICE', diceIndex })
 
 export const deselectDice = diceIndex => ({ type: 'DESELECT_DICE', diceIndex })
 
+export const updateScore = score => ({ type: 'UPDATE_SCORE', score })
+
+export const updateTotal = () => ({ type: 'UPDATE_TOTAL' })
+
 export const saveDice = () => ({ type: 'SAVE_DICE' })
 
 export const rollDice = (dice, selectedDiceIndexes) => {
