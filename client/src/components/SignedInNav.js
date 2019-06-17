@@ -5,20 +5,18 @@ import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
 const SignedInNav = ({ modalOpen, logout }) => {
   return (
     <>
-      <LinkContainer to='profile'>
+      <IndexLinkContainer to='/'>
         <Nav.Link>Home</Nav.Link>
-      </LinkContainer>
-      <LinkContainer to='friends'>
-        <Nav.Link>Friends</Nav.Link>
+      </IndexLinkContainer>
+      <LinkContainer to='rules'>
+        <Nav.Link>Rules</Nav.Link>
       </LinkContainer>
       <LinkContainer to='games'>
         <Nav.Link>Games</Nav.Link>
       </LinkContainer>
-      <IndexLinkContainer to='/'>
-        <Nav.Link onClick={e => modalOpen('Logout')}>
-            Logout
-        </Nav.Link>
-      </IndexLinkContainer>
+      <Nav.Link onClick={e => modalOpen('Logout')}>
+          Logout
+      </Nav.Link>
     </>
   )
 }

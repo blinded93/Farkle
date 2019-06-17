@@ -2,11 +2,13 @@ import React from 'react'
 import { logout } from '../actions/auth'
 import { Button, Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 const Logout = props => {
   const { logout, modalClose } = props
 
   const logoutAndClose = () => {
+    props.history.replace('/')
     logout()
     modalClose()
   }
@@ -36,4 +38,4 @@ const Logout = props => {
   )
 }
 
-export default connect(null, { logout })(Logout)
+export default withRouter(connect(null, { logout })(Logout))
