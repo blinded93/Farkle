@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { rollDice } from '../../actions/turn'
 import { isEmpty } from '../../tools'
-import { rollTheDice, checkForScore } from '../../logic/game'
+import { checkForScore } from '../../logic/game'
 
 const RollBtn = props => {
   const { dice, selectedDiceIndexes, savedDice, rollCount } = props.turn

@@ -1,30 +1,30 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { selectDice, deselectDice } from '../../actions/turn'
 
 const Dice = props => {
-  const { id, num, selectDice } = props
-  const [status, setStatus] = useState('dice-on')
-  const diceNum = Number(id.split('-')[1])
+  const { id, num, selectDice, deselectDice, diceState, rollCount } = props
+  const diceIndex = Number(id.split('-')[1])
   const handleSelect = () => {
-    if (status === 'dice-on') {
-      setStatus('dice-off')
-      selectDice(diceNum)
-    } else {
-      setStatus('dice-on')
-      deselectDice(diceNum)
-    }
+    rollCount > 0
+      && (
+          diceState === 'dice-on'
+            ? selectDice(diceIndex)
+            : deselectDice(diceIndex)
+        )
   }
 
   return (
     <>
       <i
         onClick={handleSelect}
-        style={{ 'animationName': status }}
+        style={{ 'animationName': diceState }}
         className={`hvr-grow-rotate dice fas fa-dice-${num}`}
         id={id} />
     </>
   )
 }
 
-export default connect(null, { selectDice, deselectDice })(Dice)
+const mapStateToProps = state => ({ rollCount: state.turn.rollCount })
+
+export default connect(mapStateToProps, { selectDice, deselectDice })(Dice)
