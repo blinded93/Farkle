@@ -16,20 +16,18 @@ class CurrentGame extends Component {
   updateWidth = () => this.setState({ width: window.innerWidth })
 
   render() {
-    const { currentGame, scorecards } = this.props
+    const { currentGame } = this.props
     const { width } = this.state
 
     return (
       <>
         <Container>
           {
-            this.state.width < 560
+            width < 560
               ? <MobileBoard
-                  currentGame={currentGame}
-                  scorecards={scorecards} />
+                  currentGame={currentGame} />
               : <DesktopBoard
-                  currentGame={currentGame}
-                  scorecards={scorecards} />
+                  currentGame={currentGame} />
           }
         </Container>
       </>
@@ -37,6 +35,6 @@ class CurrentGame extends Component {
   }
 }
 
-const mapStateToProps = ({ currentGame, scorecards }) => ({ currentGame, scorecards })
+const mapStateToProps = ({ currentGame }) => ({ currentGame })
 
-export default connect(mapStateToProps, { })(CurrentGame)
+export default connect(mapStateToProps)(CurrentGame)
