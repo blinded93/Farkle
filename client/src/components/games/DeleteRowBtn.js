@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { modalShow } from '../../actions/modal'
 
 const DeleteRowBtn = ({ gameId, modalShow }) => {
-  const handleClick = gameId => {
+  const handleClick = e => {
+    e.stopPropagation()
     modalShow('DeleteGame', gameId)
   }
 
@@ -13,7 +14,7 @@ const DeleteRowBtn = ({ gameId, modalShow }) => {
         <span
           className='pointer'
           style={{fontSize: '20px'}}
-          onClick={e => handleClick(gameId)}>
+          onClick={handleClick}> 
             &#10005;
         </span>
       </td>

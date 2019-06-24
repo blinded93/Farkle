@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Table } from 'react-bootstrap'
 import { getGames } from '../actions/games'
-import GamesList from '../components/games/GamesList'
+import GameRows from '../components/games/GameRows'
 import LoadMoreBtn from '../components/games/LoadGamesBtn'
 
 class Games extends Component {
@@ -37,7 +37,7 @@ class Games extends Component {
                         </tr>
                       </thead>
                       <tbody>
-                        <GamesList />
+                        <GameRows />
                       </tbody>
                     </Table>
                     <div className='text-center'>
