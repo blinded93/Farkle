@@ -1,6 +1,7 @@
 const initialState = {
   modalShown: false,
-  modalType: ''
+  modalType: '',
+  modalInfo: ''
 }
 
 export default (state = initialState, action) => {
@@ -8,13 +9,14 @@ export default (state = initialState, action) => {
     case 'MODAL_SHOW':
       return {
         modalShown: true,
-        modalType: action.modalType
+        modalType: action.modalType,
+        modalInfo: action.info
       }
 
     case 'MODAL_CLOSE':
       return {
         ...state,
-        modalShown: false
+        modalShown: false,
       }
 
     default:
