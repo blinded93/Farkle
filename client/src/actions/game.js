@@ -1,4 +1,5 @@
 import { createScorecards } from './scorecards'
+import { addGame } from './games'
 
 export const createGame = (players, token) => {
   return dispatch => {
@@ -15,8 +16,9 @@ export const createGame = (players, token) => {
         .then(resp => resp.json())
         .then(game => {
           const { scorecards, ...gameData } = game
-
+          
           dispatch(newGame(gameData))
+          dispatch(addGame(game))
           dispatch(createScorecards(players))
         })
     } else {
