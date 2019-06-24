@@ -13,3 +13,9 @@ export const noneBlankStringValues = (modalType, obj) => {
 export const isEmpty = obj => (
   obj && Object.keys(obj).length === 0
 )
+
+export const colors = {
+  green: 'RGBA(0, 178, 67, .5)',
+  yellow: 'RGBA(247, 195, 0, .5)',
+  blue: 'darkblue'
+}
