@@ -1,7 +1,8 @@
-export const modalShow = modalType => {
+export const modalShow = (modalType, info) => {
   return {
     type: 'MODAL_SHOW',
-    modalType: modalType
+    modalType,
+    info
   }
 }
 
