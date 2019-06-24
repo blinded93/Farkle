@@ -2,7 +2,7 @@ import React from 'react'
 import { Nav } from 'react-bootstrap'
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
 
-const SignedInNav = ({ modalOpen, logout }) => {
+const SignedInNav = ({ modalOpen }) => {
   return (
     <>
       <IndexLinkContainer to='/'>
