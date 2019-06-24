@@ -1,11 +1,59 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Container, Table } from 'react-bootstrap'
+import { getGames } from '../actions/games'
+import GamesList from '../components/games/GamesList'
+import LoadMoreBtn from '../components/games/LoadGamesBtn'
 
-export default class Games extends Component {
-  render () {
+class Games extends Component {
+  componentDidMount() {
+    const { games, getGames } = this.props
+
+    if (games.nextPage) {
+      getGames(games.page, localStorage.token)
+    }
+  }
+
+  render() {
+    const { games, getGames } = this.props
     return (
       <>
-      
+        <Container>
+          {
+            !games.list[0]
+              ? (<h5 className='text-center'>No games to display</h5>)
+              : (
+                  <>
+                    <Table
+                      borderless
+                      size='sm'>
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Player 1</th>
+                          <th>Score</th>
+                          <th>Player 2</th>
+                          <th>Score</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <GamesList />
+                      </tbody>
+                    </Table>
+                    <div className='text-center'>
+                      <LoadMoreBtn
+                        getGames={getGames}
+                        games={games} />
+                    </div>
+                  </>
+                )
+          }
+        </Container>
       </>
     )
   }
 }
+
+const mapStateToProps = ({ games }) => ({ games })
+
+export default connect(mapStateToProps, { getGames })(Games)
