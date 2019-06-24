@@ -20,7 +20,7 @@ const NewGameColors = props => {
             key={key}
             className={`badge pl-1 pt-1 pb-1 bg-${colors[key]}`}
             type='radio'
-            name={`${playerNumber}Color`}
+            name={`${playerNumber}.color`}
             value={key}
             onChange={e => onChange(e)} />
         ))

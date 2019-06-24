@@ -12,7 +12,7 @@ const NewGameForm = props => {
         onSubmit={e => onSubmit(e)}>
         <Form.Group>
           <Form.Control
-            name='player1Name'
+            name='player1.name'
             type='text'
             placeholder='Player 1'
             onChange={e => onChange(e)} />
@@ -27,7 +27,7 @@ const NewGameForm = props => {
         </Form.Group>
         <Form.Group>
           <Form.Control
-            name='player2Name'
+            name='player2.name'
             type='text'
             placeholder='Player 2'
             onChange={e => onChange(e)} />
