@@ -1,29 +1,41 @@
 import React, { Component } from 'react'
-import { Button, Modal, Form } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import NewGameForm from './NewGameForm'
+import { createGame } from '../../actions/game'
 
 class NewGame extends Component {
   state = {
-    player1Name:'',
-    player2Name:'',
-    player1Color:'',
-    player2Color:''
+    player1: {
+      name:'',
+      color:''
+    },
+    player2: {
+      name:'',
+      color:''
+    }
   }
 
   onChange = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    const [ player, attr ] = e.target.name.split('.')
+
+    this.setState({
+      [player]: {
+        ...this.state[player],
+        [attr]: e.target.value
+      }
+    })
   }
 
   onSubmit = e => {
     e.preventDefault()
-    debugger
+    const { createGame } = this.props
+    
+    createGame(this.state, localStorage.token)
     this.props.modalClose()
   }
 
   render() {
-    const { modalClose } = this.props
-    console.log(this.state)
     return (
       <>
         <Modal.Header closeButton>
@@ -53,6 +65,6 @@ class NewGame extends Component {
 }
 
 const mapStateToProps = state => ({
-  
+  currentUser: state.auth.currentUser
 })
-export default connect(mapStateToProps, {  })(NewGame)
+export default connect(mapStateToProps, { createGame })(NewGame)
