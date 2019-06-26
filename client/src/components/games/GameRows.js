@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect} from 'react-redux'
 import DeleteRowBtn from './DeleteRowBtn'
 import GameCols from './GameCols'
+import { IndexLinkContainer } from 'react-router-bootstrap'
+import { updateScorecards } from '../../actions/scorecards'
 
 const GameRows = props => {
-  const { games } = props
+  const { games, updateScorecards } = props
   const handleProgress = progress => {
     return progress ? 'table-success' : 'table-warning'
   }
-  const handleClick = e => {
-    
+  const handleClick = game => {
+    updateScorecards(game.scorecards)
   }
 
   return (
@@ -17,14 +19,17 @@ const GameRows = props => {
       {
         !!games[0] &&
         games.map(game => (
-          <tr
-            id={`game-${game.id}`}
-            key={`game-${game.id}`}
-            onClick={handleClick}
-            className={handleProgress(game.in_progress)}>
-              <GameCols game={game} />
-              <DeleteRowBtn gameId={game.id} />
-          </tr>
+          <Fragment key={`game-${game.id}`} >
+            <IndexLinkContainer to='/'>
+              <tr
+                id={`game-${game.id}`}
+                onClick={e => handleClick(game)}
+                className={handleProgress(game.inProgress) + ' pointer'}>
+                  <GameCols game={game} />
+                  <DeleteRowBtn gameId={game.id} />
+              </tr>
+            </IndexLinkContainer>
+          </Fragment>
         ))
       }
     </>
@@ -33,4 +38,4 @@ const GameRows = props => {
 
 const mapStateToProps = state => ({ games: state.games.list })
 
-export default connect(mapStateToProps)(GameRows)
+export default connect(mapStateToProps, { updateScorecards })(GameRows)
