@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import { selectDice, deselectDice } from '../../actions/turn'
 
 const Dice = props => {
-  const { id, num, selectDice, deselectDice, diceState, rollCount } = props
+  const { id, num, selectDice,
+          deselectDice, diceState,
+          rollCount, color } = props
   const diceIndex = Number(id.split('-')[1])
   const handleSelect = () => {
     rollCount > 0
@@ -18,13 +20,17 @@ const Dice = props => {
     <>
       <i
         onClick={handleSelect}
-        style={{ 'animationName': diceState }}
+        style={{ 'animationName': diceState,
+                 'color': `dark${color}` }}
         className={`hvr-grow-rotate dice fas fa-dice-${num}`}
         id={id} />
     </>
   )
 }
 
-const mapStateToProps = state => ({ rollCount: state.turn.rollCount })
+const mapStateToProps = state => ({
+  rollCount: state.turn.rollCount,
+  color: state.scorecards[state.currentGame.currentPlayer].color
+})
 
 export default connect(mapStateToProps, { selectDice, deselectDice })(Dice)
