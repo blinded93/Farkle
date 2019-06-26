@@ -9,13 +9,12 @@ class Games extends Component {
   componentDidMount() {
     const { games, getGames } = this.props
 
-    if (games.nextPage) {
-      getGames(games.page, localStorage.token)
-    }
+    games.page === 0 && getGames(1, localStorage.token)
   }
 
   render() {
     const { games, getGames } = this.props
+    
     return (
       <>
         <Container>
