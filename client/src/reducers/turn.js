@@ -14,7 +14,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
 
     case 'FARKLE':
-      return initialState
+      return { ...initialState, dice: state.dice }
       
     case 'CONTINUE':
       debugger
