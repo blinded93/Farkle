@@ -1,14 +1,13 @@
 const initialState = {
   areLoaded: false,
   error: '',
-  page: 1,
+  page: 0,
   nextPage: 2,
   list: []
 }
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'LOAD_GAMES':
-
       return {
         ...state,
         areLoaded: true,
