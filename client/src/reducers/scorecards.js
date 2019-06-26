@@ -27,6 +27,16 @@ export default (state = initialState, action) => {
         }
       }
 
+    case 'UPDATE_SCORECARDS':
+      return {
+        player1: {
+          ...action.scorecards[0]
+        },
+        player2: {
+          ...action.scorecards[1]
+        }
+      }
+
     default:
       return state
   }
