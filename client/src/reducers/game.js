@@ -8,7 +8,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'NEW_GAME':
-      return action.gameData || state
+      const id = action.gameData.id || state.id
+
+      return { ...state, id }
 
     case 'CHANGE_CURRENT_PLAYER':
       const currentPlayer = state.currentPlayer === 'player1'
