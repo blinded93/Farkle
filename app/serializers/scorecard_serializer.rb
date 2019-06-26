@@ -1,3 +1,7 @@
 class ScorecardSerializer < ApplicationSerializer
-  attributes :id, :name, :color, :score, :scores_per_turn
+  attributes :id, :name, :color, :score, :scoresPerTurn
+
+  def scoresPerTurn
+    object.scores_per_turn
+  end
 end
