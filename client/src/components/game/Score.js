@@ -4,15 +4,15 @@ import { checkForScore } from '../../logic/game'
 import { updateScore, farkle } from '../../actions/turn'
 
 const Score = props => {
-  const { finalDice, selectedDiceIndexes, unsavedDice, savedDice, selectedScore, totalScore, updateScore, farkle } = props
-  const diceFromIndexes = indexes => indexes.map(i => finalDice[i])
-
+  const { finalDice, selectedDiceIndexes, selectedScore, totalScore, updateScore } = props
+  
   useEffect(() => {
+    const diceFromIndexes = indexes => indexes.map(i => finalDice[i])
+
     if (finalDice[0]) {
-      console.log(savedDice, selectedDiceIndexes, selectedScore, totalScore)
       updateScore(checkForScore(diceFromIndexes(selectedDiceIndexes)))
     }
-  }, [updateScore, farkle, selectedDiceIndexes, finalDice])
+  }, [updateScore, selectedDiceIndexes, finalDice])
 
   return (
     <>
