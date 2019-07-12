@@ -1,11 +1,13 @@
 const initialState = {
   player1: {
+    id: null,
     name: 'Player1',
     color: 'dark',
     score: 0,
     scoresPerTurn: []
   },
   player2: {
+    id: null,
     name: 'Player2',
     color: 'dark',
     score: 0,
@@ -34,6 +36,19 @@ export default (state = initialState, action) => {
         },
         player2: {
           ...action.scorecards[1]
+        }
+      }
+
+    case 'UPDATE_SCORECARD':
+      const { player, score } = action
+      const newScoresPerTurn = [ ...state[player].scoresPerTurn, score ]
+
+      return {
+        ...state,
+        [player]: {
+          ...state[player],
+          score: newScoresPerTurn.reduce((sum, current) => sum + current, 0),
+          scoresPerTurn: newScoresPerTurn
         }
       }
 
