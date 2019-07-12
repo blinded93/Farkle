@@ -4,14 +4,16 @@ import DeleteRowBtn from './DeleteRowBtn'
 import GameCols from './GameCols'
 import { IndexLinkContainer } from 'react-router-bootstrap'
 import { updateScorecards } from '../../actions/scorecards'
+import { displayGame } from '../../actions/game'
 
 const GameRows = props => {
-  const { games, updateScorecards } = props
+  const { games, updateScorecards, displayGame } = props
   const handleProgress = progress => {
     return progress ? 'table-success' : 'table-warning'
   }
   const handleClick = game => {
     updateScorecards(game.scorecards)
+    displayGame(game)
   }
 
   return (
@@ -38,4 +40,4 @@ const GameRows = props => {
 
 const mapStateToProps = state => ({ games: state.games.list })
 
-export default connect(mapStateToProps, { updateScorecards })(GameRows)
+export default connect(mapStateToProps, { updateScorecards, displayGame })(GameRows)
