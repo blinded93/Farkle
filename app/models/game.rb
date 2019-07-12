@@ -9,4 +9,11 @@ class Game < ApplicationRecord
       game.save
     end
   end
+
+  def change_player(params, scorecard)
+    next_player = params[:player] == 'player1' ? 'player2' : 'player1'
+
+    self.update(current_player: next_player,
+                          last_turn: scorecard.score >= 10000)
+  end
 end
