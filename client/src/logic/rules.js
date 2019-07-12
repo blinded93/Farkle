@@ -84,6 +84,16 @@ const threeOfKind = amounts => {
   return score
 }
 
-const ones = o => o < 3 && o * 100
-
-const fives = f => f < 3 && f * 50
+const onesOrFives = (amounts, values) => {
+  const scorePer = { one: 100, five: 50 }
+  let score = 0
+  Object.keys(scorePer).forEach(num => {
+    const numberOf = amounts[num]
+    const index = values.indexOf(numberOf)
+    if (numberOf > 0 && numberOf < 3) {
+      score += numberOf * scorePer[num]
+      values.splice(index, 1)
+    }
+  })
+  return score  
+}
