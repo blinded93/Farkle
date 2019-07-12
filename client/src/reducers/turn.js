@@ -7,6 +7,7 @@ const initialState = {
   selectedScore: 0,
   dice: ['one', 'two', 'three', 'four', 'five', 'six'],
   finalDice: [],
+  scoreToBeat: 0,
   diceState: ['dice-on', 'dice-on', 'dice-on', 'dice-on', 'dice-on', 'dice-on']
 }
 
@@ -14,10 +15,17 @@ export default (state = initialState, action) => {
   switch (action.type) {
 
     case 'FARKLE':
+      return {
+        ...initialState,
+        totalScore: state.totalScore,
+        dice: state.dice,
+        diceState: state.diceState
+      }
+
+    case 'RESET_ALL':
       return { ...initialState, dice: state.dice }
       
     case 'CONTINUE':
-      debugger
       return {
         ...initialState,
         score: state.totalScore,
@@ -65,6 +73,9 @@ export default (state = initialState, action) => {
         totalScore: state.totalScore + state.selectedScore
       }
 
+    case 'SCORE_TO_BEAT':
+      return { ...state, scoreToBeat: action.scoreToBeat }
+
     case 'SAVE_DICE':
       return {
         ...state,
@@ -75,10 +86,7 @@ export default (state = initialState, action) => {
       }
 
     case 'UPDATE_FINAL_DICE':
-      return {
-        ...state,
-        finalDice: state.dice
-      }
+      return { ...state, finalDice: state.dice }
 
     case 'INCREMENT_ROLL_COUNT':
       return { ...state, rollCount: state.rollCount + 1 }
