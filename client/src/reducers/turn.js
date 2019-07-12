@@ -59,12 +59,17 @@ export default (state = initialState, action) => {
         selectedDiceIndexes: dice
       }
 
-    case 'UPDATE_SCORE':
+    case 'DESELECT_ALL':
       return {
         ...state,
-        selectedScore: action.score
-      
+        selectedDiceIndexes: [],
+        savedDice: [],
+        unsavedDice: initialState.unsavedDice,
+        diceState: initialState.diceState
       }
+
+    case 'UPDATE_SCORE':
+      return { ...state, selectedScore: action.score }
       
     case 'UPDATE_TOTAL':
       return {
