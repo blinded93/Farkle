@@ -32,5 +32,12 @@ export const checkForScore = dice => {
   const amounts = { one: 0, two: 0, three: 0, four: 0, five: 0, six: 0 }
   dice.forEach(d => amounts[d] += 1)
 
-  return scoreAccumulation(amounts)
+  return values.length > 0 ? 0 : score
+}
+
+export const checkForFarkle = dice => {
+  const amounts = setAmounts(dice)
+  const [score] = scoreAccumulation(amounts)
+
+  return score
 }
