@@ -8,11 +8,11 @@ const ModalTypeDecipher = props => {
     'Signup': SessionBody,
     'NewGame': DialogBody,
     'Logout': DialogBody,
-    'Farkle': DialogBody,
+    'TurnChangeModal': DialogBody,
     'DeleteGame': DialogBody
   }
   const SelectedComponent = components[props.modalType]
-  
+
   return (
     <>
       <SelectedComponent {...props} />

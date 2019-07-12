@@ -47,6 +47,7 @@ class SessionBody extends Component {
 
     return (
       <>
+        <Modal.Header closeButton={true}><strong>{modalType}</strong></Modal.Header>
         <Modal.Body>
           {this.formComponent(modalType)}
         </Modal.Body>

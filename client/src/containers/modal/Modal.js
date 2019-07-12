@@ -9,6 +9,7 @@ const MainModal = props => {
 
   return (
     <Modal
+      backdrop='static'
       show={modalShown}
       onHide={modalClose}
       size="sm"
