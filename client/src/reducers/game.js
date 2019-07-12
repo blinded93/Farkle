@@ -2,7 +2,9 @@ const initialState = {
   id: null,
   inProgress: true,
   winner: null,
-  currentPlayer: 'player1'
+  currentPlayer: 'player1',
+  lastPlayer: null,
+  lastTurn: false
 }
 
 export default (state = initialState, action) => {
