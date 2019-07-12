@@ -8,66 +8,68 @@ const total = amounts => (
 
 export const scoreAccumulation = amounts => {
   const values = nonZeroAmountValues(amounts)
-
-  return (sixScores(amounts, values) ||
+  const score = (sixScores(amounts, values) ||
           fiveOfKind(values)
         + fourOfKind(values)
-        + threeOfKind(amounts)
-        + ones(amounts['one'])
-        + fives(amounts['five'])
+        + threeOfKind(amounts, values)
+        + onesOrFives(amounts, values)
   )
+
+  return [score, values]
 }
 
 const sixScores = (amounts, values) => {
   if (total(amounts) < 6) return false
 
-  return (triplets(values)
-          || fourAndPair(values)
-          || threePair(values)
-          || straight(values)
-          || sixOfKind(values)
+  const score = (triplets(values)
+                || fourAndPair(values)
+                || threePair(values)
+                || straight(values)
+                || sixOfKind(values)
   )
+
+  if (score) values.splice(0, 6)
+  return score
 }
 
 const triplets = values => (
-  values.length === 2 && values.indexOf(3) >= 0
-    ? 2500
-    : 0
+  values.length === 2 && values.indexOf(3) >= 0 ? 2500 : 0
 )
 
 const fourAndPair = values => (
-  values.length === 2 && values.indexOf(4) >= 0
-    ? 1500
-    : 0
+  values.length === 2 && values.indexOf(4) >= 0 ? 1500 : 0
 )
 
 const threePair = values => (
-  values.length === 3 && values[0] === values[1]
-    ? 1500
-    : 0
+  values.length === 3 && values[0] === values[1] ? 1500 : 0
 )
 
 const straight = values => values.length === 6 ? 1500 : 0
 
 const sixOfKind = values =>  values.length === 1 ? 3000 : 0
 
-const fiveOfKind = values => (
-  values.indexOf(5) >= 0
-    ? 2000
-    : 0
-)
+const fiveOfKind = values => {
+  const index = values.indexOf(5)
+  const score = index >= 0 ? 2000 : 0
 
-const fourOfKind = values => (
-  values.indexOf(4) >= 0
-    ? 1000
-    : 0
-)
+  if (score) values.splice(index, 1)
+  return score
+}
 
-const threeOfKind = amounts => {
-  const i = Object.values(amounts).indexOf(3)
+const fourOfKind = values => {
+  const index = values.indexOf(4)
+  const score = index >= 0 ? 1000 : 0
+
+  if (score) values.splice(index, 1)
+  return score
+}
+
+const threeOfKind = (amounts, values) => {
+  const index = Object.values(amounts).indexOf(3)
+  const valuesIndex = values.indexOf(3)
   let score
 
-  switch (i) {
+  switch (index) {
     case 0:
       score = 300
       break
@@ -76,11 +78,13 @@ const threeOfKind = amounts => {
     case 3:
     case 4:
     case 5:
-     score = (i + 1) * 100
+     score = (index + 1) * 100
       break
     default:
       score = 0
   }
+
+  if (score) values.splice(valuesIndex, 1)
   return score
 }
 
