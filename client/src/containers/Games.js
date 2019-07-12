@@ -14,7 +14,7 @@ class Games extends Component {
 
   render() {
     const { games, getGames } = this.props
-    
+
     return (
       <>
         <Container>
