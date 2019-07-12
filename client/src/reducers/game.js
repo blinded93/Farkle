@@ -21,6 +21,21 @@ export default (state = initialState, action) => {
 
       return { ...state, currentPlayer: currentPlayer }
       
+    case 'DISPLAY_GAME':
+      return action.game
+
+    case 'LAST_TURN':
+      const lastPlayer = state.currentPlayer === 'player1' ? 'player2' : 'player1'
+
+      return { ...state, lastTurn: true, lastPlayer }
+      
+    case 'FINISH_GAME':
+      return {
+        ...state,
+        winner: action.winner,
+        inProgress: false
+      }
+
     default:
       return state
   }
