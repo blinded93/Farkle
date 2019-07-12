@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_031228) do
+ActiveRecord::Schema.define(version: 2019_07_11_030535) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer "user_id"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 2019_05_25_031228) do
     t.datetime "updated_at", null: false
     t.boolean "in_progress", default: true
     t.string "winner"
+    t.string "current_player", default: "player1"
+    t.boolean "last_turn", default: false
+    t.string "last_player"
     t.index ["user_id"], name: "index_games_on_user_id"
   end
 
