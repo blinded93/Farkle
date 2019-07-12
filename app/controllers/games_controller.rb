@@ -13,7 +13,14 @@ class GamesController < ApplicationController
 
   def create
     game = Game.create_with_scorecards(current_user, player_params)
-    binding.pry
+
+    render json: game, status: 200
+  end
+
+  def update
+    game = current_user.games.find_by(id: params[:id])
+    game.update(game_params)
+
     render json: game, status: 200
   end
 
@@ -28,5 +35,9 @@ class GamesController < ApplicationController
     def player_params
       keys = params.keys.select{|key| key.include?('player')}
       keys.map{|key| params.require(key.to_sym).permit(:name, :color)}
+    end
+
+    def game_params
+      params.permit(:in_progress, :winner, :current_player, :last_turn, :last_player)
     end
 end
