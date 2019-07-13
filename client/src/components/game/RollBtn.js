@@ -13,12 +13,8 @@ const RollBtn = props => {
   ]
 
   const handleDisable = () => {
-    const selectedDice = dice.filter((_, i) => {
-      return selectedDiceIndexes.includes(i)
-    })
-    const scoreCheck = checkForScore(selectedDice)
-
-    if (rollCount === 0) return false
+    if (!inProgress) return true
+    else if (rollCount === 0) return false
     else if (!isEmpty(selectedDiceIndexes)
               && scoreCheck) return false
     else if (isEmpty(selectedDiceIndexes)
