@@ -1,23 +1,13 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { rollDice, bankScore, updateTotal } from '../../actions/turn'
 import RollBtn from './RollBtn'
+import BankBtn from './BankBtn'
 
 const Buttons = props => {
-  const { bankScore, dice, selectedDiceIndexes, rollCount, updateTotal } = props
-  const handleBank = () => { bankScore() }
-
   return (
     <>
-      <RollBtn updateTotal={updateTotal} />
-      <Button
-        onClick={e => handleBank()}
-        style={{ width: '47%' }}
-        variant="outline-danger">
-        {/* // disabled={handleBankDisable()}> */}
-          Bank
-      </Button>
+      <RollBtn />
+      <BankBtn  />
     </>
   )
 }
@@ -34,4 +24,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { bankScore, updateTotal })(Buttons)
+export default connect(mapStateToProps)(Buttons)
