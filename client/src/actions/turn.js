@@ -1,11 +1,8 @@
-import { rollTheDice, checkForScore } from '../logic/game'
+import { rollTheDice, checkForFarkle } from '../logic/game'
+import { modalShow } from './modal'
+import { changeCurrentPlayer } from './game'
 
-export const farkle = () =>  {
-  return dispatch => {
-    dispatch({ type: 'CHANGE_CURRENT_PLAYER' })
-    dispatch({ type: 'FARKLE' })
-}
-}
+export const farkle = () => ({ type: 'FARKLE' })
 
 export const selectDice = diceIndex => ({ type: 'SELECT_DICE', diceIndex })
 
