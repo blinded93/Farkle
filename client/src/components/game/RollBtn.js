@@ -1,16 +1,20 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { rollDice } from '../../actions/turn'
+import { rollDice, deselectAll, updateTotal } from '../../actions/turn'
 import { isEmpty } from '../../tools'
 import { checkForScore } from '../../logic/game'
 
 const RollBtn = props => {
   const { dice, selectedDiceIndexes, savedDice, rollCount } = props.turn
-  const { rollDice, updateTotal } = props
+  const { inProgress } = props.currentGame
+  const { rollDice, updateTotal, deselectAll } = props
+  const selectedDice = dice.filter((_, i) => selectedDiceIndexes.includes(i))
+  const scoreCheck = checkForScore(selectedDice)
   const selectedAndSavedDice = [
     ...new Set([...selectedDiceIndexes, ...savedDice])
   ]
+  const extraRoll = (yes, no) => selectedAndSavedDice.length === 6 && scoreCheck ? yes : no
 
   const handleDisable = () => {
     if (!inProgress) return true
@@ -27,7 +31,7 @@ const RollBtn = props => {
       deselectAll()
       rollDice(dice, [])
     } else {
-    rollDice(dice, selectedAndSavedDice)
+      rollDice(dice, selectedAndSavedDice)
     }
     updateTotal()
   }
@@ -37,15 +41,14 @@ const RollBtn = props => {
       <Button
         onClick={handleClick}
         style={{ width: '47%' }}
-        variant="outline-success"
+        variant={extraRoll('success', 'outline-success')}
         disabled={handleDisable()}>
-          Roll
+          {extraRoll('Roll Again!', 'Roll')}
       </Button>
     </>
   )
-
 }
 
-const mapStateToProps = ({ turn }) => ({ turn })
+const mapStateToProps = ({ turn, currentGame }) => ({ turn, currentGame })
 
-export default connect(mapStateToProps, { rollDice })(RollBtn)
+export default connect(mapStateToProps, { rollDice, deselectAll, updateTotal })(RollBtn)
