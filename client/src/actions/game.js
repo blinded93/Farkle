@@ -1,5 +1,6 @@
-import { createScorecards } from './scorecards'
+import { createScorecards, updateScorecard } from './scorecards'
 import { addGame } from './games'
+import { modalShow } from './modal'
 
 export const createGame = (players, token) => {
   return dispatch => {
@@ -28,9 +29,43 @@ export const createGame = (players, token) => {
   }
 }
 
-const newGame = gameData => {
-  return {
-    type: 'NEW_GAME',
-    gameData
+const newGame = gameData => ({ type: 'NEW_GAME', gameData})
+
+export const changeCurrentPlayer = (game, token) => {
+  const current_player = game.currentPlayer === 'player1'
+    ? 'player2'
+    : 'player1'
+  const last_turn = !!game.lastTurn ? true : false
+  const gameData = { current_player, last_turn }
+  if (!!game.lastTurn) gameData.lastTurn = current_player
+  const callback = { type: 'CHANGE_CURRENT_PLAYER' }
+
+  return dispatch => {
+    dispatch(updateGame(game, gameData, token, callback))
+  }
+}
+
+const updateGame = (game, gameInfo, token, callback) => {
+  return dispatch => {
+    if (!!token && game.id) {
+      return fetch(`/games/${game.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': token
+        },
+        body: JSON.stringify(gameInfo)
+      })
+        .then(resp => resp.json())
+        .then(game => {
+          dispatch(callback)
+        })
+    } else {
+      dispatch(callback)
+    }
+  }
+}
+
   }
 }
