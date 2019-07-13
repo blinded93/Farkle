@@ -115,6 +115,20 @@ table .scores {
   100% {filter: opacity(1);}
 }
 
+.nav-pills > a.active {
+  color:  #009CB3 !important;
+  background-color: #fff !important;
+  border: 1px solid #009CB3;
+}
+
+.nav-pills > a {
+  color: darkslategrey !important;
+  cursor: auto;
+}
+
+.modal-header {
+  padding: 5px 10px !important;
+}
 
 
 
