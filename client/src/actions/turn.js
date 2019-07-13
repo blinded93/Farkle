@@ -21,29 +21,41 @@ export const rollDice = (dice, selectedAndSavedDice) => {
     dispatch(incrementRollCount())
 
     new Promise((resolve, reject) => {
-    let newDice
-    const rollDiceInterval = setInterval(() => {
+      let newDice
+      const rollDiceInterval = setInterval(() => {
         newDice = rollTheDice(dice, selectedAndSavedDice)
 
         dispatch({ type: 'SAVE_DICE', newDice })
-    }, 50)
+      }, 50)
 
-    setTimeout(() => {
-      clearInterval(rollDiceInterval)
+      setTimeout(() => {
+        clearInterval(rollDiceInterval)
         const remainingDice = newDice.filter((_, i) => !selectedAndSavedDice.includes(i))
 
-        checkForScore(remainingDice)
+        checkForFarkle(remainingDice)
           ? resolve(newDice)
           : reject(newDice)
-    }, 1000)
+      }, 1000)
     })
       .then(newDice => dispatch({ type: 'UPDATE_FINAL_DICE' }))
-      .catch(newDice => dispatch(farkle()))
+      .catch(newDice => {
+        const message = ' farkled!'
+        dispatch(modalShow('TurnChangeModal', message))
+        dispatch(farkle())
+      })
   }
 }
 
-const incrementRollCount = () => ({ type:'INCREMENT_ROLL_COUNT' })
+const incrementRollCount = () => ({ type: 'INCREMENT_ROLL_COUNT' })
 
-export const bankScore = () => ({
+export const completeTurnAndRoll = (dice, game, token) => {
+  return dispatch => {
+    dispatch(changeCurrentPlayer(game, token))
+    dispatch({ type: 'RESET_ALL' })
+    dispatch(rollDice(dice, []))
+  }
+}
 
+export const updateScoreToBeat = scoreToBeat => ({
+  type: 'SCORE_TO_BEAT', scoreToBeat
 })
