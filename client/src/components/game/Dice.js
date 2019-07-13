@@ -3,17 +3,26 @@ import { connect } from 'react-redux'
 import { selectDice, deselectDice } from '../../actions/turn'
 
 const Dice = props => {
-  const { id, num, selectDice,
+  const { id, num, selectDice, savedDice,
           deselectDice, diceState,
-          rollCount, color } = props
+          rollCount, color, inProgress } = props
+          
   const diceIndex = Number(id.split('-')[1])
+
+  const selectFunc = () => {
+    const index = parseInt(id.match(/\d/)[0])
+
+    if (diceState === 'dice-on') {
+      selectDice(diceIndex)
+    } else if (diceState === 'dice-off' && !savedDice.includes(index)) {
+      deselectDice(diceIndex)
+    }
+  }
+
   const handleSelect = () => {
     rollCount > 0
-      && (
-          diceState === 'dice-on'
-            ? selectDice(diceIndex)
-            : deselectDice(diceIndex)
-        )
+      && inProgress
+      && selectFunc()
   }
 
   return (
@@ -29,6 +38,8 @@ const Dice = props => {
 }
 
 const mapStateToProps = state => ({
+  savedDice: state.turn.savedDice,
+  inProgress: state.currentGame.inProgress,
   rollCount: state.turn.rollCount,
   color: state.scorecards[state.currentGame.currentPlayer].color
 })

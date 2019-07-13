@@ -13,7 +13,10 @@ const DiceRow = props => {
       {
         dice.slice(positions[0], positions[1]).map((num, key) => (
           <RowOrCol key={key + positions[0]}>
-            <Dice diceState={rowDiceState[key]} num={num} id={`dice-${key + positions[0]}`} />
+            <Dice
+              diceState={rowDiceState[key]}
+              num={num}
+              id={`dice-${key + positions[0]}`} />
           </RowOrCol>
         ))
       }
