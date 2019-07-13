@@ -22,7 +22,13 @@ const RollBtn = props => {
   }
 
   const handleClick = e => {
+    if (rollCount === 0) deselectAll()
+    if (selectedAndSavedDice.length === 6) {
+      deselectAll()
+      rollDice(dice, [])
+    } else {
     rollDice(dice, selectedAndSavedDice)
+    }
     updateTotal()
   }
 
