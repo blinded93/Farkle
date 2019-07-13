@@ -8,6 +8,8 @@ export const selectDice = diceIndex => ({ type: 'SELECT_DICE', diceIndex })
 
 export const deselectDice = diceIndex => ({ type: 'DESELECT_DICE', diceIndex })
 
+export const deselectAll = () => ({ type: 'DESELECT_ALL' })
+
 export const updateScore = score => ({ type: 'UPDATE_SCORE', score })
 
 export const updateTotal = () => ({ type: 'UPDATE_TOTAL' })
