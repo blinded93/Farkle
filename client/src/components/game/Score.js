@@ -42,7 +42,8 @@ const Score = props => {
 
   return (
     <>
-      <h4 className='text-danger'>{display}</h4>
+      <h4 className='text-danger'>{display} &nbsp;&nbsp;<small>{lastPlayer && !winner && 'Last Turn!'}</small></h4>
+      
     </>
   )
 }
