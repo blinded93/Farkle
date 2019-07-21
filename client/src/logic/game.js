@@ -9,15 +9,6 @@ const indexToString = num => ({
   '5': 'six'
 }[num.toString()])
 
-const stringToNum = string => ({
-  'one': 1,
-  'two': 2,
-  'three': 3,
-  'four': 4,
-  'five': 5,
-  'six': 6
-}[string])
-
 const randomNum = () => Math.round(0 + Math.random() * 5)
 
 export const rollTheDice = (dice, selectedIndexes) => (
