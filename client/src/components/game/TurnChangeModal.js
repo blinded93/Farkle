@@ -10,7 +10,7 @@ const TurnChangeModal = props => {
           lastTurn, winner, finishGame, modalClose, lastPlayer } = props
   const name = () => {
     const player = lastTurn && winner ? lastPlayer : currentPlayer
-    debugger
+
     return scorecards[player].name
   }
 
@@ -32,6 +32,10 @@ const TurnChangeModal = props => {
       <Modal.Header closeButton />
       <Modal.Body className='text-center'>
         <h5>{name()} {modalInfo}</h5>
+        {
+          lastTurn && modalInfo.includes('points!')
+            && (<h6 className='text-danger'>Last Chance!</h6>)
+        }
       </Modal.Body>
       <Modal.Footer>
         {winner
