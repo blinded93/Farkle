@@ -30,7 +30,7 @@ const Dice = props => {
       <i
         onClick={handleSelect}
         style={{ 'animationName': diceState,
-                 'color': `dark${color}` }}
+                 'color': `${color}` }}
         className={`hvr-grow-rotate dice fas fa-dice-${num}`}
         id={id} />
     </>
