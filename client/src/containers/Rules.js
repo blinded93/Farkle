@@ -22,17 +22,17 @@ class Rules extends Component {
               </Row>
               <Row>
                 <Col className='text-right'>
-                  <i class="rules-dice fas fa-dice-five" /> FIVES = 50 points  &nbsp;
+                  <i className="rules-dice fas fa-dice-five" /> FIVES = 50 points  &nbsp;
                 </Col>
                 <Col className='pl-4'>
-                  <i class="rules-dice fas fa-dice-one" /> ONES = 100 points
+                  <i className="rules-dice fas fa-dice-one" /> ONES = 100 points
                 </Col>
               </Row>
               <Row>
                 <Col className='text-right pr-3'>
-                  <i class="rules-dice fas fa-dice-one" />&nbsp;
-                  <i class="rules-dice fas fa-dice-one" />&nbsp;
-                  <i class="rules-dice fas fa-dice-one" />&nbsp;
+                  <i className="rules-dice fas fa-dice-one" />&nbsp;
+                  <i className="rules-dice fas fa-dice-one" />&nbsp;
+                  <i className="rules-dice fas fa-dice-one" />&nbsp;
                   = 300 pts.
                 </Col>
                 <Col className='border-left pl-3'>
@@ -41,9 +41,9 @@ class Rules extends Component {
               </Row>
               <Row>
                 <Col className='text-right pr-3'>
-                  <i class="rules-dice fas fa-dice-two" />&nbsp;
-                  <i class="rules-dice fas fa-dice-two" />&nbsp;
-                  <i class="rules-dice fas fa-dice-two" />&nbsp;
+                  <i className="rules-dice fas fa-dice-two" />&nbsp;
+                  <i className="rules-dice fas fa-dice-two" />&nbsp;
+                  <i className="rules-dice fas fa-dice-two" />&nbsp;
                   = 200 pts.
                 </Col>
                 <Col className='border-left pl-3'>
@@ -52,9 +52,9 @@ class Rules extends Component {
               </Row>
               <Row>
                 <Col className='text-right pr-3'>
-                  <i class="rules-dice fas fa-dice-three" />&nbsp;
-                  <i class="rules-dice fas fa-dice-three" />&nbsp;
-                  <i class="rules-dice fas fa-dice-three" />&nbsp;
+                  <i className="rules-dice fas fa-dice-three" />&nbsp;
+                  <i className="rules-dice fas fa-dice-three" />&nbsp;
+                  <i className="rules-dice fas fa-dice-three" />&nbsp;
                   = 300 pts.
                 </Col>
                 <Col className='border-left pl-3'>
@@ -63,9 +63,9 @@ class Rules extends Component {
               </Row>
               <Row>
                 <Col className='text-right pr-3'>
-                  <i class="rules-dice fas fa-dice-four" />&nbsp;
-                  <i class="rules-dice fas fa-dice-four" />&nbsp;
-                  <i class="rules-dice fas fa-dice-four" />&nbsp;
+                  <i className="rules-dice fas fa-dice-four" />&nbsp;
+                  <i className="rules-dice fas fa-dice-four" />&nbsp;
+                  <i className="rules-dice fas fa-dice-four" />&nbsp;
                   = 400 pts.
                 </Col>
                 <Col className='border-left pl-3'>
@@ -74,9 +74,9 @@ class Rules extends Component {
               </Row>
               <Row>
                 <Col className='text-right pr-3'>
-                  <i class="rules-dice fas fa-dice-five" />&nbsp;
-                  <i class="rules-dice fas fa-dice-five" />&nbsp;
-                  <i class="rules-dice fas fa-dice-five" />&nbsp;
+                  <i className="rules-dice fas fa-dice-five" />&nbsp;
+                  <i className="rules-dice fas fa-dice-five" />&nbsp;
+                  <i className="rules-dice fas fa-dice-five" />&nbsp;
                   = 500 pts.
                 </Col>
                 <Col className='border-left pl-3'>
@@ -85,9 +85,9 @@ class Rules extends Component {
               </Row>
               <Row>
                 <Col className='text-right pr-3'>
-                  <i class="rules-dice fas fa-dice-six" />&nbsp;
-                  <i class="rules-dice fas fa-dice-six" />&nbsp;
-                  <i class="rules-dice fas fa-dice-six" />&nbsp;
+                  <i className="rules-dice fas fa-dice-six" />&nbsp;
+                  <i className="rules-dice fas fa-dice-six" />&nbsp;
+                  <i className="rules-dice fas fa-dice-six" />&nbsp;
                   = 600 pts.
                 </Col>
                 <Col className='border-left pl-3'>
