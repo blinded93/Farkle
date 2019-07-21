@@ -1,10 +1,16 @@
 import React from 'react'
 import { Nav } from 'react-bootstrap'
-import { IndexLinkContainer } from 'react-router-bootstrap'
+import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
 
 const SignedOutNav = ({ modalOpen }) => {
   return (
     <>
+      <LinkContainer to='rules'>
+        <Nav.Link>
+          Rules
+        </Nav.Link>
+      </LinkContainer>
+      <span style={{'font-size': 25, color: 'dark-brown'}}>|</span>
       <IndexLinkContainer to='/'>
         <Nav.Link onClick={e => modalOpen('Login')}>
             Login
