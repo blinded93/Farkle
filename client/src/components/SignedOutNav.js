@@ -10,7 +10,7 @@ const SignedOutNav = ({ modalOpen }) => {
           Rules
         </Nav.Link>
       </LinkContainer>
-      <span style={{'font-size': 25, color: 'dark-brown'}}>|</span>
+      <span style={{'fontSize': 25, color: 'dark-brown'}}>|</span>
       <IndexLinkContainer to='/'>
         <Nav.Link onClick={e => modalOpen('Login')}>
             Login
