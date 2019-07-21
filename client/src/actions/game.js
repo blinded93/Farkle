@@ -23,7 +23,7 @@ export const createGame = (players, token) => {
           dispatch(createScorecards(players))
         })
     } else {
-      dispatch(newGame())
+      dispatch(newGame({ id: '00000' }))
       dispatch(createScorecards(players))
     }
   }
@@ -37,7 +37,7 @@ export const changeCurrentPlayer = (game, token) => {
     : 'player1'
   const last_turn = !!game.lastTurn ? true : false
   const gameData = { current_player, last_turn }
-  if (!!game.lastTurn) gameData.lastTurn = current_player
+  if (!!game.lastTurn) gameData.last_player = current_player
   const callback = { type: 'CHANGE_CURRENT_PLAYER' }
 
   return dispatch => {
