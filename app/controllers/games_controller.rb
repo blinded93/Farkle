@@ -3,7 +3,7 @@ class GamesController < ApplicationController
   include Pagy::Backend
 
   def index
-    pagy, games = pagy(Game.for(current_user.id), items: 1)
+    pagy, games = pagy(Game.for(current_user.id), items: 10)
 
     render json: {
       games: games.map { |g| GameSerializer.new(g) },
