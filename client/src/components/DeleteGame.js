@@ -12,6 +12,7 @@ const DeleteGame = ({ gameId, deleteGame, modalClose }) => {
   
   return (
     <>
+      <Modal.Header closeButton />
       <Modal.Body>
         <div className='text-center'>
           <div className='mb-2'>Delete Game ID {gameId}?</div>
