@@ -15,14 +15,12 @@ const Score = props => {
                     : `Turn Score: ${displayedScore}`
 
   useEffect(() => {
-    
     if (finalDice[0]) {
       const diceFromIndexes = indexes => indexes.map(i => finalDice[i])
       const score = checkForScore(diceFromIndexes(selectedDiceIndexes))
 
       updateScore(score)
       if (scoreToBeat && currentPlayer === lastPlayer) {
-
         const newScore = checkForFarkle(diceFromIndexes(unsavedDice))
                          + displayedScore
         const scorecard = {
