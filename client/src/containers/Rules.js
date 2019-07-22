@@ -3,7 +3,15 @@ import { connect } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
 
 class Rules extends Component {
-  
+  threeDiceCol = (num, score) => (
+    <Col className='text-right pr-3'>
+      <i className={`rules-dice fas fa-dice-${num}`} />&nbsp;
+      <i className={`rules-dice fas fa-dice-${num}`} />&nbsp;
+      <i className={`rules-dice fas fa-dice-${num}`} />&nbsp;
+      = {score} pts.
+    </Col>
+  )
+
   render() {
     return (
       <>
@@ -29,67 +37,37 @@ class Rules extends Component {
                 </Col>
               </Row>
               <Row>
-                <Col className='text-right pr-3'>
-                  <i className="rules-dice fas fa-dice-one" />&nbsp;
-                  <i className="rules-dice fas fa-dice-one" />&nbsp;
-                  <i className="rules-dice fas fa-dice-one" />&nbsp;
-                  = 300 pts.
-                </Col>
+                {this.threeDiceCol('one', 300)}
                 <Col className='border-left pl-3'>
                   4 of any number = 1,000 pts.
                 </Col>
               </Row>
               <Row>
-                <Col className='text-right pr-3'>
-                  <i className="rules-dice fas fa-dice-two" />&nbsp;
-                  <i className="rules-dice fas fa-dice-two" />&nbsp;
-                  <i className="rules-dice fas fa-dice-two" />&nbsp;
-                  = 200 pts.
-                </Col>
+                {this.threeDiceCol('two', 200)}
                 <Col className='border-left pl-3'>
                   5 of any number = 2,000 pts.
                 </Col>
               </Row>
               <Row>
-                <Col className='text-right pr-3'>
-                  <i className="rules-dice fas fa-dice-three" />&nbsp;
-                  <i className="rules-dice fas fa-dice-three" />&nbsp;
-                  <i className="rules-dice fas fa-dice-three" />&nbsp;
-                  = 300 pts.
-                </Col>
+                {this.threeDiceCol('three', 300)}
                 <Col className='border-left pl-3'>
                   6 of any number = 3,000 pts.
                 </Col>
               </Row>
               <Row>
-                <Col className='text-right pr-3'>
-                  <i className="rules-dice fas fa-dice-four" />&nbsp;
-                  <i className="rules-dice fas fa-dice-four" />&nbsp;
-                  <i className="rules-dice fas fa-dice-four" />&nbsp;
-                  = 400 pts.
-                </Col>
+                {this.threeDiceCol('four', 400)}
                 <Col className='border-left pl-3'>
                   1-6 straight = 1,500 pts.
                 </Col>
               </Row>
               <Row>
-                <Col className='text-right pr-3'>
-                  <i className="rules-dice fas fa-dice-five" />&nbsp;
-                  <i className="rules-dice fas fa-dice-five" />&nbsp;
-                  <i className="rules-dice fas fa-dice-five" />&nbsp;
-                  = 500 pts.
-                </Col>
+                {this.threeDiceCol('five', 500)}
                 <Col className='border-left pl-3'>
                   Three pairs = 1,500 pts.
                 </Col>
               </Row>
               <Row>
-                <Col className='text-right pr-3'>
-                  <i className="rules-dice fas fa-dice-six" />&nbsp;
-                  <i className="rules-dice fas fa-dice-six" />&nbsp;
-                  <i className="rules-dice fas fa-dice-six" />&nbsp;
-                  = 600 pts.
-                </Col>
+                {this.threeDiceCol('six', 600)}
                 <Col className='border-left pl-3'>
                   Four of any number<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   with a pair = 1,500 pts.
