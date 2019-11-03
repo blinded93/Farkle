@@ -1,6 +1,9 @@
 {
   "name": "farkle",
   "version": "1.0.0",
+    "engines": {
+      "node": "12.13.0"
+    },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "main": "index.js",
   "directories": {
@@ -8,8 +11,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build. public/",
+    "build": "cd client && npm install && npm update && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built!'"
   },
   "repository": {
