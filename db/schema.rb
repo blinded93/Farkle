@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2019_07_11_030535) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_07_11_030535) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "in_progress", default: true
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 2019_07_11_030535) do
   create_table "scorecards", force: :cascade do |t|
     t.integer "score", default: 0
     t.text "scores_per_turn"
-    t.integer "user_id"
-    t.integer "game_id"
+    t.bigint "user_id"
+    t.bigint "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
